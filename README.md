@@ -6,9 +6,38 @@ VS Code extension specific APM package for winccoa-tools-pack.
 
 This package contains AI agent skills, prompts, and instructions specific to **VS Code extension development**.
 
-Inherits from `apm-org` (organization-wide configuration).
+Inherits from `apm-org` (organization-wide skills).
 
-## Usage
+## Setup
+
+### 1. Install APM (once per machine)
+
+**Windows (PowerShell):**
+```powershell
+irm https://aka.ms/apm-windows | iex
+```
+
+**macOS / Linux:**
+```bash
+curl -sSL https://aka.ms/apm-unix | sh
+```
+
+> For alternative install methods (Homebrew, Scoop, pip) see the official guide:  
+> https://microsoft.github.io/apm/getting-started/quick-start/
+
+### 2. After cloning any repository
+
+```bash
+apm install
+```
+
+This syncs skills, instructions, and prompts from `apm.yml` into `.github/`, `.claude/`, `.cursor/` — the native directories your AI tools read automatically.
+
+### 3. Keeping up to date
+
+Re-run `apm install` when `apm.yml` or `apm.lock.yaml` changes (e.g. after `git pull`).
+
+## Usage in repositories
 
 Add to your VS Code extension's `apm.yml`:
 
@@ -19,25 +48,8 @@ dependencies:
     - winccoa-tools-pack/apm-vscode-extension
 ```
 
-Then run:
-
-```bash
-apm install
-```
-
 ## Contents
 
-- `instructions/` — VS Code extension development context
-- `skills/` — Extension-specific AI capabilities
-- `prompts/` — Extension-specific templates
-
-## Structure
-
-```
-apm-vscode-extension/
-├── apm.yml
-├── README.md
-├── instructions/
-├── skills/
-└── prompts/
-```
+- `skills/` — VS Code extension specific AI capabilities
+- `instructions/` — Extension development context
+- `prompts/` — Extension specific templates
